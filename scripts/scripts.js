@@ -174,7 +174,7 @@ export function removeInlineStyle(items) {
 }
 
 export function removeInlineStyles(main) {
-  removeInlineStyle(main.querySelectorAll('span[style]'));
+  removeInlineStyle(main.querySelectorAll('div.section > div > div span[style]'));
 }
 
 /**
