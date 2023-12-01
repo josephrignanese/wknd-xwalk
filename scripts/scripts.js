@@ -163,12 +163,27 @@ async function loadDemoConfig() {
   window.wknd.demoConfig = demoConfig;
 }
 
+export function removeInlineStyle(items) {
+  items.forEach(item => {
+    const isHidden = item.style.display === 'none';
+    item.removeAttribute('style');
+    if (isHidden) {
+      item.style.display = 'none';
+    }
+  });
+}
+
+export function removeInlineStyles(main) {
+  removeInlineStyle(main.querySelectorAll('span[style]'));
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  removeInlineStyles(main);
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
